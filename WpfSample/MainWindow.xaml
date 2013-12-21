@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:WpfSample.ViewModels"
+        Title="MainWindow" Height="200" Width="250">
+    <Grid>
+        <ItemsControl ItemsSource="{Binding}">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type vm:ButtonViewModel}">
+                    <Button Content="{Binding Text}" Command="{Binding Command}"></Button>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:TextBoxViewModel}">
+                    <TextBox Text="{Binding Text}"/>
+                </DataTemplate>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas></Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding Left}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Top}"/>
+                    <Setter Property="Canvas.Width" Value="{Binding Width}"/>
+                    <Setter Property="Canvas.Height" Value="{Binding Height}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+    </Grid>
+</Window>
